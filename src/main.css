@@ -28,7 +28,8 @@ a {
 .contact-item-data {
   display: block;
   margin-bottom: 5px;
-  color: #414141; }
+  color: #414141;
+  word-break: break-word; }
 
 .contact-item-name {
   font-weight: 700; }

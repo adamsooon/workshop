@@ -18,7 +18,15 @@ const Contact = ({contact}) =>
   </li>;
 
 Contact.propTypes = {
-  contact: PropTypes.object.isRequired
+  contact: PropTypes.shape({
+    name: PropTypes.shape({
+      first: PropTypes.string.isRequired,
+      last: PropTypes.string.isRequired
+    }),
+    email: PropTypes.string.isRequired,
+    cell: PropTypes.string.isRequired,
+    picture: PropTypes.object.isRequired
+  }).isRequired,
 };
 
 export default Contact;

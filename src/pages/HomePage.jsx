@@ -1,22 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { contactsFetched } from "../actions";
-import Contact from "../components/contactsList/contact"
+import ContactsList from "../components/contactsList/contactsList"
+import axios from 'axios';
 
 class HomePage extends Component {
   componentDidMount() {
-    fetch("https://randomuser.me/api/?format=json&results=15")
-      .then(res => res.json())
-      .then(json => this.props.contactsFetched(json.results));
+    axios.get('https://randomuser.me/api/?format=json&results=15')
+      .then(res => this.props.contactsFetched(res.data.results));
   }
   render() {
     return (
      <div className="container">
-       <ul className="contact-list">
-         {this.props.contacts.map(contact =>
-           <Contact contact={contact} key={contact.email}/>
-         )}
-       </ul>
+       <ContactsList contacts={this.props.contacts}/>
      </div>
     );
   }
