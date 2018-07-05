@@ -1,21 +1,51 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 const name = contact =>`${contact.name.first} ${contact.name.last}`;
 
+const ContactItem = styled.li`
+  padding: 20px;
+  border-radius: 8px;
+  background: #f6f6f6;
+  list-style-type: none;
+`;
+
+const Image = styled.img `
+  display: block;
+  width: 100%;
+  max-width: 128px;
+  margin: 0 auto 10px;
+  border-radius: 100%;
+`;
+
+const Name = styled.span `
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 700;
+  color: #414141;
+  word-break: break-word;
+`;
+
+const Data = styled.a `
+  display: block;
+  margin-bottom: 5px;
+  color: #414141;
+  word-break: break-word;
+`;
+
 const Contact = ({contact}) =>
-  <li className="contact-item">
+  <ContactItem>
     <figure>
-      <img
-        className="contact-item-photo"
+      <Image
         src={contact.picture.large}
         alt={name(contact)}
       />
     </figure>
-    <span className="contact-item-name">{name(contact)}</span>
-    <a href={`tel:${contact.cell}`} className="contact-item-data">Cell: {contact.cell}</a>
-    <a href={`mailto:${contact.email}`} className="contact-item-data">{contact.email}</a>
-  </li>;
+    <Name>{name(contact)}</Name>
+    <Data href={`tel:${contact.cell}`}>Cell: {contact.cell}</Data>
+    <Data href={`mailto:${contact.email}`}>{contact.email}</Data>
+  </ContactItem>;
 
 Contact.propTypes = {
   contact: PropTypes.shape({
