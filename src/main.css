@@ -3,6 +3,9 @@
   padding: 0;
   box-sizing: border-box; }
 
+a {
+  text-decoration: none; }
+
 .container {
   width: 100%;
   max-width: 1200px;
@@ -10,11 +13,32 @@
 
 .contact-list {
   display: grid;
-  grid-template-columns: 380px 380px 380px;
-  grid-gap: 10px;
+  grid-template-columns: 260px 260px 260px 260px;
+  grid-gap: 15px;
   justify-content: center;
   padding: 0; }
 
-.contact-list-item {
+.contact-item {
+  padding: 20px;
   list-style-type: none;
-  background: green; }
+  background: #f6f6f6;
+  border-radius: 8px; }
+
+.contact-item-name,
+.contact-item-data {
+  display: block;
+  margin-bottom: 5px;
+  color: #414141; }
+
+.contact-item-name {
+  font-weight: 700; }
+
+a.contact-item-data:hover {
+  color: black; }
+
+.contact-item-photo {
+  display: block;
+  width: 100%;
+  max-width: 128px;
+  margin: 0 auto 10px;
+  border-radius: 100%; }
