@@ -11,6 +11,10 @@ const baseStyles = () => injectGlobal`
     text-decoration: none;
   }
   
+  input {
+    outline: none;
+  }
+  
   * {
     box-sizing: border-box;
   }

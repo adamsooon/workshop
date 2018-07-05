@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { contactsFetched } from "../actions";
+import GetFiltredContacts from "../selectors/GetFiltredContacts";
 import Container from "../components/wrappers/container"
 import ContactsList from "../components/contactsList/contactsList"
+import ContactsFilterContainer from "../components/contactsList/contactsFilter"
 import axios from 'axios';
 
 class HomePage extends Component {
@@ -13,6 +15,7 @@ class HomePage extends Component {
   render() {
     return (
      <Container>
+       <ContactsFilterContainer/>
        <ContactsList contacts={this.props.contacts}/>
      </Container>
     );
@@ -21,7 +24,8 @@ class HomePage extends Component {
 
 const mapStateToProps = state => {
   return {
-    contacts: state.contacts
+    contacts: GetFiltredContacts(state.contacts, state.contactsSearch),
+    search: state.contactsSearch
   };
 };
 

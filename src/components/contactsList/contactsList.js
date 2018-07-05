@@ -4,15 +4,16 @@ import styled from 'styled-components';
 import Contact from './contact';
 
 const List = styled.ul`
+  display: grid;
+  grid-gap: 15px 0;
   @media (min-width: 767px) {
-    display: grid;
-    grid-template-columns: 240px 240px 240px;
+    grid-template-columns: repeat(3, 240px);
     grid-gap: 15px;
     justify-content: center;
     padding: 0;
   }
   @media (min-width: 1240px) {
-    grid-template-columns: 260px 260px 260px 260px;
+    grid-template-columns: repeat(4, 260px);
   }
 `;
 
