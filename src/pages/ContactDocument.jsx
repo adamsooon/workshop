@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
+import SimpleForm from "../components/contactForm/Form"
 
 class ContactDocument extends Component {
+  onSubmit = values => {
+    console.log(values);
+  };
   render() {
     return (
       <section className="contact-page">
-        <header className="contact-page-header">
-          dfddffd
-        </header>
-        <form className="contact-form">
-          <input type="text"/>
-        </form>
+        <SimpleForm onSubmit={this.onSubmit}/>
       </section>
     );
   }
