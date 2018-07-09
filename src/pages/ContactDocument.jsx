@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SimpleForm from "../components/contactForm/Form"
+import SyncValidationForm from "../components/contactForm/Form"
 
 class ContactDocument extends Component {
   onSubmit = values => {
@@ -8,7 +8,7 @@ class ContactDocument extends Component {
   render() {
     return (
       <section className="contact-page">
-        <SimpleForm onSubmit={this.onSubmit}/>
+        <SyncValidationForm onSubmit={this.onSubmit}/>
       </section>
     );
   }
