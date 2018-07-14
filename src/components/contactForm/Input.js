@@ -2,29 +2,32 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const InputBox = styled.input`
+const InputItem = styled.input`
   width: 200px;
   height: 40px;
+  padding: 0 10px;
+  border-radius: 8px;
 `;
 
 const Input = props =>
-  <InputBox
+  <InputItem
     id={props.id}
     name={props.name}
     onChange={props.onChange}
     value={props.value}
     type={props.type}
+    placeholder={props.placeholder}
   />;
 
-InputBox.propTypes = {
+Input.propTypes = {
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string,
   type: PropTypes.string,
   id: PropTypes.string,
-  name: PropTypes.string
+  name: PropTypes.string,
 };
 
-InputBox.defaultProps = {
+Input.defaultProps = {
   type: 'text',
   value: '',
   id: '',

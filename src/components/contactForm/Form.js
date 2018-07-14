@@ -1,12 +1,15 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import Input from './Input';
+import InputWrapper from './InputWrapper';
 
 const validate = values => {
   const errors = {};
 
   if (!values.test) {
-    errors.test = 'Dawaj na ring';
+    errors.test = 'The field is required';
+  }
+  else if(/[0-9\- ]+$/.test(values.test)) {
+    errors.test = 'hola hola'
   }
   if (!values.username) {
     errors.username = 'Required';
@@ -37,51 +40,20 @@ const warn = values => {
   return warnings;
 };
 
-const renderField = ({
-  input,
-  label,
-  type,
-  meta: { touched, error, warning }
-}) =>
-  <div>
-    <label>
-      {label}
-    </label>
-    <div>
-      <input {...input} placeholder={label} type={type} />
-      {touched &&
-        ((error &&
-          <span>
-            {error}
-          </span>) ||
-          (warning &&
-            <span>
-              {warning}
-            </span>))}
-    </div>
-  </div>;
-
 const SyncValidationForm = props => {
   const { handleSubmit, pristine, reset, submitting } = props;
   return (
     <form onSubmit={handleSubmit}>
       <Field
-        name="username"
+        id="test"
+        name="test"
         type="text"
-        component={renderField}
+        component={InputWrapper}
         label="Username"
       />
-      <Field name="email" type="email" component={renderField} label="Email" />
-      <Field name="age" type="number" component={renderField} label="Age" />
-      <Field
-        label="test"
-        name="test"
-        component={props =>
-          <Input
-            value={props.input.value}
-            onChange={evt => {console.log(props.meta);props.input.onChange(evt.target.value)}}
-          />}
-      />
+      <Field id="email" name="email" type="email" component={InputWrapper} label="Email" />
+      <Field id="age" name="age" type="number" component={InputWrapper} label="Age" />
+    
       <div>
         <button type="submit" disabled={submitting}>
           Submit

@@ -13,6 +13,7 @@ const baseStyles = () => injectGlobal`
   
   input {
     outline: none;
+    border: 1px solid;
   }
   
   * {
