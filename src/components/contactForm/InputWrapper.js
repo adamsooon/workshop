@@ -1,8 +1,9 @@
 import React from "react";
-import Label from './Label';
-import Input from './Input';
+import PropTypes from "prop-types";
+import Label from "./Label";
+import Input from "./Input";
+import Message from "./Message";
 import styled from "styled-components";
-// import PropTypes from "prop-types";
 
 const InputWrapperStyles = styled.div`
   margin-bottom: 20px;
@@ -14,23 +15,23 @@ const InputWrapper = ({
   type,
   id,
   meta: { touched, error, warning }
-}) =>
+}) => (
   <InputWrapperStyles>
-    <Label id={id}>
-      {label}
-    </Label>
+    <Label id={id}>{label}</Label>
     <div>
       <Input id={id} {...input} type={type} />
       {touched &&
-        ((error &&
-          <span>
-            {error}
-          </span>) ||
-          (warning &&
-            <span>
-              {warning}
-            </span>))}
+        ((error && <Message error>{error}</Message>) ||
+          (warning && <Message warning>{warning}</Message>))}
     </div>
-  </InputWrapperStyles>;
+  </InputWrapperStyles>
+);
+
+InputWrapper.propTypes = {
+  input: PropTypes.object.isRequired,
+  label: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+}
 
 export default InputWrapper;

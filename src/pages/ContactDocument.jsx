@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Container from "../components/wrappers/container"
 import SyncValidationForm from "../components/contactForm/Form"
 
 class ContactDocument extends Component {
@@ -8,7 +9,9 @@ class ContactDocument extends Component {
   render() {
     return (
       <section className="contact-page">
-        <SyncValidationForm onSubmit={this.onSubmit}/>
+        <Container>
+          <SyncValidationForm onSubmit={this.onSubmit}/>
+        </Container>
       </section>
     );
   }
