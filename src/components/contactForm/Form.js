@@ -1,59 +1,70 @@
-import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import InputWrapper from './InputWrapper';
+import React from "react";
+import { Field, reduxForm } from "redux-form";
+import InputWrapper from "./InputWrapper";
+import SelectWrapper from "./SelectWrapper";
 
 const validate = values => {
   const errors = {};
+  const errorRequired = "The field is required";
 
-  if (!values.test) {
-    errors.test = 'The field is required';
-  }
-  else if(/[0-9\- ]+$/.test(values.test)) {
-    errors.test = 'hola hola'
-  }
   if (!values.username) {
-    errors.username = 'Required';
-  } else if (values.username.length > 15) {
-    errors.username = 'Must be 15 characters or less';
+    errors.username = errorRequired;
+  } else if (/[0-9\- ]+$/.test(values.username)) {
+    errors.username = "Can not be a number";
   }
   if (!values.email) {
-    errors.email = 'Required';
+    errors.email = errorRequired;
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address';
+    errors.email = "Invalid email address";
   }
-  if (!values.age) {
-    errors.age = 'Required';
-  } else if (isNaN(Number(values.age))) {
-    errors.age = 'Must be a number';
-  } else if (Number(values.age) < 18) {
-    errors.age = 'Sorry, you must be at least 18 years old';
+  if (!values.options || values.options.length < 1) {
+    errors.options = errorRequired;
   }
-
   return errors;
 };
 
 const warn = values => {
   const warnings = {};
   if (values.age < 19) {
-    warnings.age = 'Hmm, you seem a bit young...';
+    warnings.age = "Hmm, you seem a bit young...";
   }
   return warnings;
 };
 
 const SyncValidationForm = props => {
   const { handleSubmit, pristine, reset, submitting } = props;
+  const options = [{ value: 1, label: "One" }, { value: 2, label: "Two" }];
   return (
     <form onSubmit={handleSubmit}>
       <Field
-        id="test"
-        name="test"
+        id="username"
+        name="username"
         type="text"
         component={InputWrapper}
         label="Username"
       />
-      <Field id="email" name="email" type="email" component={InputWrapper} label="Email" />
-      <Field id="age" name="age" type="number" component={InputWrapper} label="Age" />
-    
+      <Field
+        id="email"
+        name="email"
+        type="email"
+        component={InputWrapper}
+        label="Email"
+      />
+      <Field
+        id="options"
+        name="options"
+        component={props => (
+          <SelectWrapper
+            id="option"
+            name="option"
+            input={props.input}
+            options={options}
+            meta={props.meta}
+            label="Choose options"
+            multi
+          />
+        )}
+      />
       <div>
         <button type="submit" disabled={submitting}>
           Submit
@@ -67,7 +78,7 @@ const SyncValidationForm = props => {
 };
 
 export default reduxForm({
-  form: 'syncValidation', // a unique identifier for this form
+  form: "syncValidation", // a unique identifier for this form
   validate, // <--- validation function given to redux-form
   warn // <--- warning function given to redux-form
 })(SyncValidationForm);
