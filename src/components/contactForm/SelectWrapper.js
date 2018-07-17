@@ -7,6 +7,14 @@ import styled from "styled-components";
 
 const SelecttWrapperStyles = styled.div`
   margin-bottom: 20px;
+  
+  & .Select {
+    width: 100%;
+  
+    @media (min-width: 767px) {
+      width: 300px;
+    }
+  }
 `;
 
 const SelectWrapper = ({

@@ -31,7 +31,7 @@ const warn = values => {
   return warnings;
 };
 
-const SyncValidationForm = props => {
+const ContactForm = props => {
   const { handleSubmit, pristine, reset, submitting } = props;
   const options = [{ value: 1, label: "One" }, { value: 2, label: "Two" }];
   return (
@@ -81,4 +81,4 @@ export default reduxForm({
   form: "syncValidation", // a unique identifier for this form
   validate, // <--- validation function given to redux-form
   warn // <--- warning function given to redux-form
-})(SyncValidationForm);
+})(ContactForm);

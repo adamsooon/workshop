@@ -3,10 +3,14 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const InputItem = styled.input`
-  width: 200px;
+  width: 100%;
   height: 40px;
   padding: 0 10px;
   border-radius: 8px;
+  
+  @media (min-width: 767px) {
+    width: 300px;
+  }
 `;
 
 const Input = props =>
