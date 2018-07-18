@@ -19,7 +19,7 @@ const InputWrapper = ({
   <InputWrapperStyles>
     <Label id={id}>{label}</Label>
     <div>
-      <Input id={id} {...input} type={type} />
+      <Input id={id} error={touched && (error !== undefined)} {...input} type={type} />
       {touched &&
         ((error && <Message error>{error}</Message>) ||
           (warning && <Message warning>{warning}</Message>))}

@@ -1,7 +1,25 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
+import styled from 'styled-components';
 import InputWrapper from "./InputWrapper";
 import SelectWrapper from "./SelectWrapper";
+
+const FormStyles = styled.form`
+  @media (min-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(2, 45%);
+    justify-content: center;
+  }
+  @media (min-width: 1240px) {
+    grid-template-columns: repeat(2, 40%);
+  }
+`;
+
+const ButtonsWrapperStyles = styled.div`
+  @media (min-width: 768px) {
+    grid-column: 1;
+  }
+`;
 
 const validate = values => {
   const errors = {};
@@ -12,6 +30,12 @@ const validate = values => {
   } else if (/[0-9\- ]+$/.test(values.username)) {
     errors.username = "Can not be a number";
   }
+
+  if (!values.surname) {
+    errors.surname = errorRequired;
+  } else if (/[0-9\- ]+$/.test(values.username)) {
+    errors.surname = "Can not be a number";
+  }
   if (!values.email) {
     errors.email = errorRequired;
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
@@ -19,6 +43,9 @@ const validate = values => {
   }
   if (!values.options || values.options.length < 1) {
     errors.options = errorRequired;
+  }
+  if (!values.countries || values.options.length < 1) {
+    errors.countries = errorRequired;
   }
   return errors;
 };
@@ -35,13 +62,20 @@ const ContactForm = props => {
   const { handleSubmit, pristine, reset, submitting } = props;
   const options = [{ value: 1, label: "One" }, { value: 2, label: "Two" }];
   return (
-    <form onSubmit={handleSubmit}>
+    <FormStyles onSubmit={handleSubmit}>
       <Field
         id="username"
         name="username"
         type="text"
         component={InputWrapper}
-        label="Username"
+        label="Name"
+      />
+      <Field
+        id="surname"
+        name="surname"
+        type="text"
+        component={InputWrapper}
+        label="Surname"
       />
       <Field
         id="email"
@@ -49,6 +83,21 @@ const ContactForm = props => {
         type="email"
         component={InputWrapper}
         label="Email"
+      />
+      <Field
+        id="countries"
+        name="countries"
+        component={props => (
+          <SelectWrapper
+            id="option"
+            name="option"
+            input={props.input}
+            options={options}
+            meta={props.meta}
+            label="Choose country"
+            multi
+          />
+        )}
       />
       <Field
         id="options"
@@ -65,15 +114,15 @@ const ContactForm = props => {
           />
         )}
       />
-      <div>
+      <ButtonsWrapperStyles>
         <button type="submit" disabled={submitting}>
           Submit
         </button>
         <button type="button" disabled={pristine || submitting} onClick={reset}>
           Clear Values
         </button>
-      </div>
-    </form>
+      </ButtonsWrapperStyles>
+    </FormStyles>
   );
 };
 

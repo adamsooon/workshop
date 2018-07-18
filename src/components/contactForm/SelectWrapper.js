@@ -8,12 +8,22 @@ import styled from "styled-components";
 const SelecttWrapperStyles = styled.div`
   margin-bottom: 20px;
   
-  & .Select {
+  .Select {
     width: 100%;
   
     @media (min-width: 767px) {
       width: 300px;
     }
+  }
+  
+  .Select-control {
+    height: 40px;
+    border-color: ${props => props.error ? 'red' : 'black'};
+    border-radius: 8px;
+  }
+
+  .Select-placeholder {
+    padding-top: 2px;
   }
 `;
 
@@ -25,7 +35,7 @@ const SelectWrapper = ({
   multi,
   options
 }) => (
-  <SelecttWrapperStyles>
+  <SelecttWrapperStyles error={touched && (error !== undefined)}>
     <Label id={id}>{label}</Label>
     <div>
       <RFReactSelect input={input} options={options} multi={multi}/>

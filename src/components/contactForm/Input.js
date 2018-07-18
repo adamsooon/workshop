@@ -7,8 +7,9 @@ const InputItem = styled.input`
   height: 40px;
   padding: 0 10px;
   border-radius: 8px;
+  border-color: ${props => props.error ? 'red' : 'black'};
   
-  @media (min-width: 767px) {
+  @media (min-width: 768px) {
     width: 300px;
   }
 `;
@@ -16,6 +17,7 @@ const InputItem = styled.input`
 const Input = props =>
   <InputItem
     id={props.id}
+    error={props.error}
     name={props.name}
     onChange={props.onChange}
     value={props.value}
@@ -29,6 +31,7 @@ Input.propTypes = {
   type: PropTypes.string,
   id: PropTypes.string,
   name: PropTypes.string,
+  error: PropTypes.any.isRequired,
 };
 
 Input.defaultProps = {
