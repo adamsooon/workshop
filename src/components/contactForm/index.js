@@ -18,7 +18,9 @@ const FormStyles = styled.form`
 
 const ButtonsWrapperStyles = styled.div`
   @media (min-width: 768px) {
-    grid-column: 1;
+    grid-column: span 2;
+    display: flex;
+    justify-content: space-around;
   }
 `;
 
@@ -62,6 +64,7 @@ const warn = values => {
 const ContactForm = props => {
   const { handleSubmit, pristine, reset, submitting } = props;
   const options = [{ value: 1, label: "One" }, { value: 2, label: "Two" }];
+
   return (
     <FormStyles onSubmit={handleSubmit}>
       <Field

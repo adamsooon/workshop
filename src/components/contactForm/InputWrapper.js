@@ -6,7 +6,13 @@ import Message from "./Message";
 import styled from "styled-components";
 
 const InputWrapperStyles = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const InputWrapper = ({
@@ -18,9 +24,13 @@ const InputWrapper = ({
 }) => (
   <InputWrapperStyles>
     <Label id={id}>{label}</Label>
-    {console.log(input)}
     <div>
-      <Input id={id} error={touched && (error !== undefined)} type={type} {...input}/>
+      <Input
+        id={id}
+        error={touched && error !== undefined}
+        type={type}
+        {...input}
+      />
       {touched &&
         ((error && <Message error>{error}</Message>) ||
           (warning && <Message warning>{warning}</Message>))}
@@ -32,7 +42,7 @@ InputWrapper.propTypes = {
   input: PropTypes.object.isRequired,
   label: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-}
+  id: PropTypes.string.isRequired
+};
 
 export default InputWrapper;

@@ -4,19 +4,24 @@ import PropTypes from 'prop-types';
 
 const ButtonsStyles = styled.button`
   width: 100%;
-  height: 40px;
+  height: 45px;
   padding: 0 10px;
   font-size: 14px;
   border-radius: 30px;
-  background: black;
+  background: ${props => props.secondary ? '#62f442' : '#414141'}
   color: white;
-  border: 1px solid #414141;
+  border: 1px solid ${props => props.secondary ? '#62f442' : '#414141'};
   transition: 0.3s;
   
   &:hover {
-    color: ${props => props.secondary ? 'white' : '#414141'}
-    background: ${props => props.secondary ? '#414141' : 'white'};
-    border: 1px solid #414141;
+    color: ${props => props.secondary ? '#62f442' : '#414141'};
+    background: white;
+    border: 1px solid ${props => props.secondary ? '#62f442' : '#414141'};
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: no-drop;
   }
   
   @media (min-width: 768px) {

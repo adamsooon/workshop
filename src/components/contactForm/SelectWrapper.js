@@ -6,7 +6,13 @@ import Message from "./Message";
 import styled from "styled-components";
 
 const SelecttWrapperStyles = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   
   .Select {
     width: 100%;
@@ -17,13 +23,13 @@ const SelecttWrapperStyles = styled.div`
   }
   
   .Select-control {
-    height: 40px;
+    height: 45px;
     border-color: ${props => props.error ? 'red' : '#414141'};
     border-radius: 16px;
   }
 
   .Select-placeholder {
-    padding-top: 2px;
+    padding-top: 5px;
   }
 `;
 
