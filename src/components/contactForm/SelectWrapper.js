@@ -18,8 +18,8 @@ const SelecttWrapperStyles = styled.div`
   
   .Select-control {
     height: 40px;
-    border-color: ${props => props.error ? 'red' : 'black'};
-    border-radius: 8px;
+    border-color: ${props => props.error ? 'red' : '#414141'};
+    border-radius: 16px;
   }
 
   .Select-placeholder {
@@ -33,12 +33,13 @@ const SelectWrapper = ({
   id,
   meta: { touched, error, warning },
   multi,
+  placeholder,
   options
 }) => (
   <SelecttWrapperStyles error={touched && (error !== undefined)}>
     <Label id={id}>{label}</Label>
     <div>
-      <RFReactSelect input={input} options={options} multi={multi}/>
+      <RFReactSelect input={input} options={options} multi={multi} placeholder={placeholder}/>
       {touched &&
         ((error && <Message error>{error}</Message>) ||
           (warning && <Message warning>{warning}</Message>))}
@@ -50,12 +51,14 @@ SelectWrapper.propTypes = {
   input: PropTypes.object.isRequired,
   label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,
   multi: PropTypes.bool,
 };
 
 SelectWrapper.defaultProps = {
-  multi: false
+  multi: false,
+  placeholder: ''
 };
 
 export default SelectWrapper;

@@ -3,6 +3,7 @@ import { Field, reduxForm } from "redux-form";
 import styled from 'styled-components';
 import InputWrapper from "./InputWrapper";
 import SelectWrapper from "./SelectWrapper";
+import Button from "../ui/button/button";
 
 const FormStyles = styled.form`
   @media (min-width: 768px) {
@@ -44,7 +45,7 @@ const validate = values => {
   if (!values.options || values.options.length < 1) {
     errors.options = errorRequired;
   }
-  if (!values.countries || values.options.length < 1) {
+  if (!values.countries || values.countries.length < 1) {
     errors.countries = errorRequired;
   }
   return errors;
@@ -95,7 +96,7 @@ const ContactForm = props => {
             options={options}
             meta={props.meta}
             label="Choose country"
-            multi
+            placeholder="Choose country"
           />
         )}
       />
@@ -110,17 +111,18 @@ const ContactForm = props => {
             options={options}
             meta={props.meta}
             label="Choose options"
+            placeholder="Choose Options"
             multi
           />
         )}
       />
       <ButtonsWrapperStyles>
-        <button type="submit" disabled={submitting}>
+        <Button type="submit" disabled={submitting}>
           Submit
-        </button>
-        <button type="button" disabled={pristine || submitting} onClick={reset}>
+        </Button>
+        <Button secondary type="button" disabled={pristine || submitting} onClick={reset}>
           Clear Values
-        </button>
+        </Button>
       </ButtonsWrapperStyles>
     </FormStyles>
   );

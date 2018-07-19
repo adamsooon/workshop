@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Label from "./Label";
-import Input from "./Input";
+import Input from "../ui/input/Input";
 import Message from "./Message";
 import styled from "styled-components";
 
@@ -18,8 +18,9 @@ const InputWrapper = ({
 }) => (
   <InputWrapperStyles>
     <Label id={id}>{label}</Label>
+    {console.log(input)}
     <div>
-      <Input id={id} error={touched && (error !== undefined)} {...input} type={type} />
+      <Input id={id} error={touched && (error !== undefined)} type={type} {...input}/>
       {touched &&
         ((error && <Message error>{error}</Message>) ||
           (warning && <Message warning>{warning}</Message>))}

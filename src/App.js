@@ -7,17 +7,24 @@ import ContactDocument from './pages/ContactDocument.jsx';
 
 const baseStyles = () => injectGlobal`
   ${reset}
+  * {
+    box-sizing: border-box;
+  }
+  
   a {
     text-decoration: none;
   }
   
-  input {
+  input, {
     outline: none;
     border: 1px solid;
+    &:focus {
+      outline:none;
+    }
   }
   
-  * {
-    box-sizing: border-box;
+  button {
+    outline: none;
   }
 `;
 

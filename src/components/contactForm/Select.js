@@ -13,11 +13,12 @@ class RFReactSelect extends Component {
       onFocus: PropTypes.func.isRequired
     }).isRequired,
     options: PropTypes.array.isRequired,
-    multi: PropTypes.bool
+    multi: PropTypes.bool,
+    placeholder: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
-    multi: false
+    multi: false,
   };
 
   singleChangeHandler = func => {
@@ -47,7 +48,7 @@ class RFReactSelect extends Component {
     return multi ? filteredOptions : filteredOptions[0];
   };
   render() {
-    const { input, options, multi } = this.props;
+    const { input, options, multi, placeholder } = this.props;
     const { name, value, onBlur, onChange, onFocus } = input;
     const transformedValue = this.transformValue(value, options, multi);
     return (
@@ -57,6 +58,7 @@ class RFReactSelect extends Component {
         value={transformedValue}
         multi={multi}
         options={options}
+        placeholder={placeholder}
         onChange={
           multi
             ? this.multiChangeHandler(onChange)

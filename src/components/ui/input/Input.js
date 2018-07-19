@@ -6,8 +6,11 @@ const InputItem = styled.input`
   width: 100%;
   height: 40px;
   padding: 0 10px;
-  border-radius: 8px;
-  border-color: ${props => props.error ? 'red' : 'black'};
+  border-radius: 16px;
+  border: 1px solid ${props => props.error ? 'red' : 'black'};
+  &:focus {
+    border: 1px solid rgba(81, 203, 238, 1);
+  }
   
   @media (min-width: 768px) {
     width: 300px;
@@ -31,14 +34,17 @@ Input.propTypes = {
   type: PropTypes.string,
   id: PropTypes.string,
   name: PropTypes.string,
-  error: PropTypes.any.isRequired,
+  error: PropTypes.any,
+  placeholder: PropTypes.string
 };
 
 Input.defaultProps = {
   type: 'text',
   value: '',
   id: '',
-  name: ''
+  name: '',
+  error: false,
+  placeholder: ''
 };
 
 export default Input;
