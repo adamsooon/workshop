@@ -5,7 +5,16 @@ import Container from "../components/wrappers/container"
 import ContactForm from "../components/contactForm"
 
 class ContactDocument extends Component {
+  constructor(props) {
+
+    super(props);
+
+    this.state = {
+      sent: false,
+    };
+  }
   onSubmit = values => {
+    this.setState({ sent: true });
     console.log(values);
   };
   render() {
@@ -28,7 +37,7 @@ class ContactDocument extends Component {
         <Header/>
         <Container>
           <Link to="/">Home</Link>
-          <ContactForm onSubmit={this.onSubmit}/>
+          <ContactForm sent={this.state.sent} onSubmit={this.onSubmit}/>
         </Container>
       </section>
     );

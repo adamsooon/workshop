@@ -34,7 +34,7 @@ const App = () => {
     <Router>
       <div className="main-container">
         <Route exact path="/" component={HomePageContainer} />
-        <Route exact path="/kontakt" component={ContactDocument} />
+        <Route exact path="/contact" component={ContactDocument} />
       </div>
     </Router>
   );

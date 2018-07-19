@@ -62,72 +62,76 @@ const warn = values => {
 };
 
 const ContactForm = props => {
-  const { handleSubmit, pristine, reset, submitting } = props;
+  const { handleSubmit, pristine, reset, submitting, sent } = props;
   const options = [{ value: 1, label: "One" }, { value: 2, label: "Two" }];
 
   return (
-    <FormStyles onSubmit={handleSubmit}>
-      <Field
-        id="username"
-        name="username"
-        type="text"
-        component={InputWrapper}
-        label="Name"
-      />
-      <Field
-        id="surname"
-        name="surname"
-        type="text"
-        component={InputWrapper}
-        label="Surname"
-      />
-      <Field
-        id="email"
-        name="email"
-        type="email"
-        component={InputWrapper}
-        label="Email"
-      />
-      <Field
-        id="countries"
-        name="countries"
-        component={props => (
-          <SelectWrapper
-            id="option"
-            name="option"
-            input={props.input}
-            options={options}
-            meta={props.meta}
-            label="Choose country"
-            placeholder="Choose country"
-          />
-        )}
-      />
-      <Field
-        id="options"
-        name="options"
-        component={props => (
-          <SelectWrapper
-            id="option"
-            name="option"
-            input={props.input}
-            options={options}
-            meta={props.meta}
-            label="Choose options"
-            placeholder="Choose Options"
-            multi
-          />
-        )}
-      />
-      <ButtonsWrapperStyles>
-        <Button type="submit" disabled={submitting}>
-          Submit
-        </Button>
-        <Button secondary type="button" disabled={pristine || submitting} onClick={reset}>
-          Clear Values
-        </Button>
-      </ButtonsWrapperStyles>
-    </FormStyles>
+    <div>
+      {!sent ?
+         <FormStyles onSubmit={handleSubmit}>
+         <Field
+           id="username"
+           name="username"
+           type="text"
+           component={InputWrapper}
+           label="Name"
+         />
+         <Field
+           id="surname"
+           name="surname"
+           type="text"
+           component={InputWrapper}
+           label="Surname"
+         />
+         <Field
+           id="email"
+           name="email"
+           type="email"
+           component={InputWrapper}
+           label="Email"
+         />
+         <Field
+           id="countries"
+           name="countries"
+           component={props => (
+             <SelectWrapper
+               id="option"
+               name="option"
+               input={props.input}
+               options={options}
+               meta={props.meta}
+               label="Choose country"
+               placeholder="Choose country"
+             />
+           )}
+         />
+         <Field
+           id="options"
+           name="options"
+           component={props => (
+             <SelectWrapper
+               id="option"
+               name="option"
+               input={props.input}
+               options={options}
+               meta={props.meta}
+               label="Choose options"
+               placeholder="Choose Options"
+               multi
+             />
+           )}
+         />
+         <ButtonsWrapperStyles>
+           <Button type="submit" disabled={submitting}>
+             Submit
+           </Button>
+           <Button secondary type="button" disabled={pristine || submitting} onClick={reset}>
+             Clear Values
+           </Button>
+         </ButtonsWrapperStyles>
+       </FormStyles> : <p>The form has been sent</p>
+      }
+    </div>
   );
 };
 
