@@ -14,7 +14,6 @@ const Input = styled.input `
   border: 1px solid #414141;
   border-radius: 16px;
   &:focus {
-    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
     border: 1px solid rgba(81, 203, 238, 1);
   }
   

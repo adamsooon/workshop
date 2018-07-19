@@ -7,16 +7,24 @@ import ContactDocument from './pages/ContactDocument.jsx';
 
 const baseStyles = () => injectGlobal`
   ${reset}
+  * {
+    box-sizing: border-box;
+  }
+  
   a {
     text-decoration: none;
   }
   
-  input {
+  input, {
     outline: none;
+    border: 1px solid;
+    &:focus {
+      outline:none;
+    }
   }
   
-  * {
-    box-sizing: border-box;
+  button {
+    outline: none;
   }
 `;
 
@@ -26,7 +34,7 @@ const App = () => {
     <Router>
       <div className="main-container">
         <Route exact path="/" component={HomePageContainer} />
-        <Route exact path="/kontakt" component={ContactDocument} />
+        <Route exact path="/contact" component={ContactDocument} />
       </div>
     </Router>
   );
