@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { contactsFetched } from "../actions";
+import { fetchContacts } from "../actions";
 import GetFiltredContacts from "../selectors/GetFiltredContacts";
 import Container from "../components/wrappers/container"
 import ContactsList from "../components/contactsList/contactsList"
 import ContactsFilterContainer from "../components/contactsList/contactsFilter"
-import axios from 'axios';
 
 class HomePage extends Component {
   componentDidMount() {
-    axios.get('https://randomuser.me/api/?format=json&results=15&inc=name,picture,email, cell')
-      .then(res => this.props.contactsFetched(res.data.results));
+    this.props.fetchContacts();
   }
   render() {
+    const { contacts } = this.props;
     return (
      <Container>
        <ContactsFilterContainer/>
-       <ContactsList contacts={this.props.contacts}/>
+       <ContactsList contacts={contacts}/>
      </Container>
     );
   }
@@ -29,7 +28,7 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = { contactsFetched };
+const mapDispatchToProps = { fetchContacts };
 
 const HomePageContainer = connect(mapStateToProps, mapDispatchToProps)(HomePage);
 

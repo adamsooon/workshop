@@ -54,7 +54,7 @@ const SelectWrapper = ({
 );
 
 SelectWrapper.propTypes = {
-  input: PropTypes.object.isRequired,
+  input: PropTypes.object,
   label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
@@ -64,7 +64,8 @@ SelectWrapper.propTypes = {
 
 SelectWrapper.defaultProps = {
   multi: false,
-  placeholder: ''
+  placeholder: '',
+  input: {}
 };
 
 export default SelectWrapper;

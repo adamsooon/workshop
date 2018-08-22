@@ -4,7 +4,7 @@
 import React from "react";
 import styled from 'styled-components';
 import { connect } from "react-redux";
-import { searchContacts } from "../../actions";
+import { searchContacts, changeCountryAndFetch } from "../../actions";
 
 const Input = styled.input `
   width: 100%
@@ -34,6 +34,14 @@ class ContactsFilter extends React.Component {
           value={this.props.contactsSearch}
           onChange={this.handleSearchChange}
         />
+        <select
+          onChange={this.handleCountryChange}
+          value={this.props.country}
+        >
+          <option value="">All</option>
+          <option value="us">USA</option>
+          <option value="gb">Great Britain</option>
+        </select>
       </div>
     );
   }
@@ -41,15 +49,20 @@ class ContactsFilter extends React.Component {
   handleSearchChange = evt => {
     this.props.searchContacts(evt.currentTarget.value);
   };
+
+  handleCountryChange = evt => {
+    this.props.changeCountryAndFetch(evt.currentTarget.value);
+  };
 }
 
 const mapStateToProps = state => {
   return {
-    contactsSearch: state.contactsSearch
+    contactsSearch: state.contactsSearch,
+    country: state.country
   };
 };
 
-const mapDispatchToProps = { searchContacts };
+const mapDispatchToProps = { searchContacts, changeCountryAndFetch };
 
 const ContactsFilterContainer = connect(
   mapStateToProps,

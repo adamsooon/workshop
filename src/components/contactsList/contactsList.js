@@ -17,13 +17,13 @@ const List = styled.ul`
   }
 `;
 
-const ContactsList = props => {
-  if (props.contacts === 0) {
+const ContactsList = ({contacts}) => {
+  if (contacts === 0) {
     return null;
   }
   return (
     <List>
-      {props.contacts.map(contact =>
+      {contacts.map(contact =>
         <Contact contact={contact} key={contact.email} />
       )}
     </List>
