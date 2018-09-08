@@ -5,8 +5,8 @@ export const contactsFetched = contacts => ({
   contacts
 });
 
-export const fetchContacts = (country = "all") => dispatch => {
-  ContactsApi(country).then(res => dispatch(contactsFetched(res.data.results)));
+export const fetchContacts = (country = "all", gender="all") => dispatch => {
+  ContactsApi(country, gender).then(res => dispatch(contactsFetched(res.data.results)));
 }
 
 export const searchContacts = text => ({
@@ -19,7 +19,18 @@ export const filterContactsCountry = country => ({
   country
 });
 
+export const filterContactsGender = gender => ({
+  type: 'CHANGE_GENDER',
+  gender
+});
+
 export const changeCountryAndFetch = country => (dispatch, geState) => {
   dispatch(filterContactsCountry(country));
-  dispatch(fetchContacts(geState().country));
+  dispatch(fetchContacts(geState().country, geState().gender));
+}
+
+export const changeGenderAndFetch = gender => (dispatch, geState) => {
+  dispatch(filterContactsGender(gender))
+  dispatch(fetchContacts(geState().country, geState().gender));
+  console.log(geState().country, geState().gender)
 }

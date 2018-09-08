@@ -2,14 +2,24 @@
  * Created by adampowalisz on 7/5/18.
  */
 import React from "react";
-import styled from 'styled-components';
+import styled from "styled-components";
 import { connect } from "react-redux";
-import { searchContacts, changeCountryAndFetch } from "../../actions";
+import {
+  searchContacts,
+  changeCountryAndFetch,
+  changeGenderAndFetch
+} from "../../actions";
 
-const Input = styled.input `
+const ContactFiltersWrapper = styled.div`
+  display: flex;
+  justify-content: center
+  margin: 0 0 30px;
+`;
+
+const Input = styled.input`
   width: 100%
   height: 40px;
-  margin: 0 0 30px;
+  margin: 0 0 20px;
   padding: 0 20px;
   border: 1px solid #414141;
   border-radius: 16px;
@@ -34,14 +44,24 @@ class ContactsFilter extends React.Component {
           value={this.props.contactsSearch}
           onChange={this.handleSearchChange}
         />
-        <select
-          onChange={this.handleCountryChange}
-          value={this.props.country}
-        >
-          <option value="">All</option>
-          <option value="us">USA</option>
-          <option value="gb">Great Britain</option>
-        </select>
+        <ContactFiltersWrapper>
+          <select
+            onChange={this.handleOptionChange("changeCountryAndFetch")}
+            value={this.props.country}
+          >
+            <option value="">All Countries</option>
+            <option value="us">USA</option>
+            <option value="gb">Great Britain</option>
+          </select>
+          <select
+            onChange={this.handleOptionChange("changeGenderAndFetch")}
+            value={this.props.gender}
+          >
+            <option value="">All genders</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </ContactFiltersWrapper>
       </div>
     );
   }
@@ -50,19 +70,24 @@ class ContactsFilter extends React.Component {
     this.props.searchContacts(evt.currentTarget.value);
   };
 
-  handleCountryChange = evt => {
-    this.props.changeCountryAndFetch(evt.currentTarget.value);
+  handleOptionChange = option => evt => {
+    this.props[option](evt.currentTarget.value);
   };
 }
 
 const mapStateToProps = state => {
   return {
     contactsSearch: state.contactsSearch,
-    country: state.country
+    country: state.country,
+    gender: state.gender
   };
 };
 
-const mapDispatchToProps = { searchContacts, changeCountryAndFetch };
+const mapDispatchToProps = {
+  searchContacts,
+  changeCountryAndFetch,
+  changeGenderAndFetch
+};
 
 const ContactsFilterContainer = connect(
   mapStateToProps,

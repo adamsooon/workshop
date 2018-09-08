@@ -2,8 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { injectGlobal } from 'styled-components';
 import reset from 'styled-reset';
-import HomePageContainer from './pages/HomePage.jsx';
+import {HomePageContainer} from './pages/HomePage.jsx';
 import ContactDocument from './pages/ContactDocument.jsx';
+import MaterialUI from './pages/MaterialUI.jsx';
 
 const baseStyles = () => injectGlobal`
   ${reset}
@@ -35,6 +36,7 @@ const App = () => {
       <div className="main-container">
         <Route exact path="/" component={HomePageContainer} />
         <Route exact path="/contact" component={ContactDocument} />
+        <Route exact path="/material" component={MaterialUI} />
       </div>
     </Router>
   );
