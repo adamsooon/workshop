@@ -4,6 +4,7 @@ import { injectGlobal } from 'styled-components';
 import reset from 'styled-reset';
 import {HomePageContainer} from './pages/HomePage.jsx';
 import ContactDocument from './pages/ContactDocument.jsx';
+import {GraphqlContainer} from './pages/GraphqlPage.jsx';
 import MaterialUI from './pages/MaterialUI.jsx';
 
 const baseStyles = () => injectGlobal`
@@ -37,6 +38,7 @@ const App = () => {
         <Route exact path="/" component={HomePageContainer} />
         <Route exact path="/contact" component={ContactDocument} />
         <Route exact path="/material" component={MaterialUI} />
+        <Route exact path="/graphql" component={GraphqlContainer} />
       </div>
     </Router>
   );
