@@ -8,6 +8,25 @@ import { ApolloProvider } from "react-apollo";
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import registerServiceWorker from './registerServiceWorker';
 
+const typeDefs = `
+  type Todo {
+    id: Int!
+    text: String!
+    completed: Boolean!
+  }
+
+  type Mutation {
+    addTodo(text: String!): Todo
+    toggleTodo(id: Int!): Todo
+  }
+
+  type Query {
+    adam: String
+    visibilityFilter: String
+    todos: [Todo]
+  }
+`;
+
 const cache = new InMemoryCache({
     dataIdFromObject: object => object.key || null
 });
@@ -18,7 +37,7 @@ const client = new ApolloClient({
     request: operation => {
         operation.setContext({
             headers: {
-                authorization: `Bearer 763925e7a7aae42fee5f2dc4aa790045e88adb19`
+                authorization: `Bearer `
             },
         });
     }
