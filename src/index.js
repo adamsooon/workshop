@@ -8,7 +8,9 @@ import { ApolloProvider } from "react-apollo";
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import registerServiceWorker from './registerServiceWorker';
 
-const cache = new InMemoryCache();
+const cache = new InMemoryCache({
+    dataIdFromObject: object => object.key || null
+});
 
 const client = new ApolloClient({
     uri: "https://api.github.com/graphql",
